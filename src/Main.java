@@ -24,8 +24,9 @@ public class Main {
                 line = scanner.nextLine().strip().replace(" ", "");
 
                 Node node = getNode(line);
-                tree.insert(node);
                 System.out.println(node);
+
+                tree.insert(node);
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());

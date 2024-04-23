@@ -66,7 +66,7 @@ public class Node {
     }
 
     public ArrayList<Node> getPastaBackup() {
-        return getPastaBackup();
+        return pastaBackup;
     }
 
     @Override
