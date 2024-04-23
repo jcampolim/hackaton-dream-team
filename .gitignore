@@ -1,0 +1,8 @@
+*.class
+*.xml
+*.iml
+*.zip
+
+# Intellij
+.idea/
+out/
