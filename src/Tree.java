@@ -3,21 +3,13 @@ import java.util.ArrayList;
 public class Tree {
     Node root;
 
-    public Tree() {
-        root = null;
-    }
+    public Tree() { root = null; }
 
-    public Node getRoot() {
-        return root;
-    }
+    public Node getRoot() { return root; }
 
-    public void setRoot(Node root) {
-        this.root = root;
-    }
+    public void setRoot(Node root) { this.root = root; }
 
-    public boolean isEmpty() {
-        return root == null;
-    }
+    public boolean isEmpty() { return root == null; }
 
     public boolean insert(Node node) {
         if(isEmpty()) {

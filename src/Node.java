@@ -19,6 +19,8 @@ public class Node {
         pastaBackup = new ArrayList<>();
     }
 
+    public Node() { this(null, null, null, null); }
+
     public String getNome() {
         return nome;
     }
@@ -64,6 +66,17 @@ public class Node {
     }
 
     public ArrayList<Node> getPastaBackup() {
-        return getPastaBackup();
+        return pastaBackup;
+    }
+
+    @Override
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nome: " + nome + "\n")
+                .append("Origem: " + origem + "\n")
+                .append("Destino: " + destino + "\n")
+                .append("Backup: " + backup + "\n");
+        return sb.toString();
     }
 }
