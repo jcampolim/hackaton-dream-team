@@ -24,7 +24,7 @@ public class Main {
                 line = scanner.nextLine().strip().replace(" ", "");
 
                 Node node = getNode(line);
-
+                tree.insert(node);
                 System.out.println(node);
             }
         } catch (FileNotFoundException e) {
@@ -55,6 +55,7 @@ public class Main {
 
         if (!tokens[4].isEmpty()) node.setBackup(tokens[4]);
         else node.setBackup(null);
+
         return node;
     }
 }
