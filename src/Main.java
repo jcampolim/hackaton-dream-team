@@ -1,15 +1,16 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Tree tree = new Tree();
+        ArrayList<Tree> tree = new ArrayList<>();
+        tree.add(new Tree());
         readFile(tree, "./baseparateste.csv");
-
     }
 
-    public static void readFile(Tree tree, String filePath) {
+    public static void readFile(ArrayList<Tree> tree, String filePath) {
         // Try reading the file path
         try {
             FileReader fileReader = new FileReader(filePath);
@@ -26,7 +27,15 @@ public class Main {
                 Node node = getNode(line);
                 System.out.println(node);
 
-                tree.insert(node);
+                boolean isInserted = false;
+                for(int i = 0; i < tree.size(); i++) {
+                    isInserted = tree.get(i).insert(node);
+                    if(isInserted) break;
+                }
+
+                if(!isInserted) {
+                    tree.add(new Tree(node));
+                }
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());

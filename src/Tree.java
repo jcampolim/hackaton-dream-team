@@ -5,6 +5,10 @@ public class Tree {
 
     public Tree() { root = null; }
 
+    public Tree(Node root) {
+        this.root = root;
+    }
+
     public Node getRoot() { return root; }
 
     public void setRoot(Node root) { this.root = root; }
@@ -21,10 +25,10 @@ public class Tree {
     }
 
     public boolean insert(Node root, Node node) {
-        if(root.getDestino().equals(node.getOrigem())) {
+        if(root.getDestino() != null && root.getDestino().equalsIgnoreCase(node.getOrigem())) {
             root.addDestino(node);
             return true;
-        } else if(root.getBackup().equals(node.getOrigem())) {
+        } else if(root.getBackup() != null && root.getBackup().equalsIgnoreCase(node.getOrigem())) {
             root.addBackup(node);
             return true;
         } else {
