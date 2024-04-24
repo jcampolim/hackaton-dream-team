@@ -1,5 +1,5 @@
 javac *.java
 
-java Main.java
+java Main.java > saida.txt
 
 rm -rf *.class

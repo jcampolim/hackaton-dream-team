@@ -37,6 +37,7 @@ public class Main {
                 auxList.add(currNode);
 
                 if (mapDestiny.containsKey(tokens[3])) {
+                    // System.out.println("entrei");
                     ArrayList<Node> list = mapDestiny.get(tokens[3]);
                     list.add(currNode);
                 } else {
@@ -60,7 +61,8 @@ public class Main {
 
                 if (mapBackup.get(currNode.getOrigem()) != null) {
                     for (Node parentNode : mapBackup.get(currNode.getOrigem())) {
-                        System.out.printf("Conectando ID %d a ID %d (Backup)\n", parentNode.getId(), currNode.getId());
+                        // System.out.printf("Conectando ID %d a ID %d (Backup)\n", parentNode.getId(),
+                        // currNode.getId());
                         parentNode.addBackup(currNode);
                         currNode.addOrigem(parentNode);
                     }
@@ -69,12 +71,36 @@ public class Main {
                 if (mapDestiny.get(currNode.getOrigem()) != null) {
                     System.out.println("entrei");
                     for (Node parentNode : mapDestiny.get(currNode.getOrigem())) {
-                        System.out.printf("Conectando ID %d a ID %d (Destino)\n", parentNode.getId(), currNode.getId());
+                        // System.out.printf("Conectando ID %d a ID %d (Destino)\n", parentNode.getId(),
+                        // currNode.getId());
                         parentNode.addDestino(currNode);
                         currNode.addOrigem(parentNode);
                     }
                 }
             }
+
+            for (Node aux : auxList) {
+                System.out.printf("ID: %d\n", aux.getId());
+                System.out.printf("Nome: %s\n", aux.getNome());
+                if (!aux.getPastaOrigem().isEmpty()) {
+                    System.out.printf("Nós da origem: ");
+                    for (Node sons : aux.getPastaOrigem())
+                        System.out.printf("ID: %d; ", sons.getId());
+                }
+                if (!aux.getPastaDestino().isEmpty()) {
+                    System.out.printf("Nós destino: ");
+                    for (Node sons : aux.getPastaDestino())
+                        System.out.printf("ID: %d; ", sons.getId());
+                }
+                if (!aux.getPastaBackup().isEmpty()) {
+                    System.out.printf("Nós de backup: ");
+                    for (Node sons : aux.getPastaBackup())
+                        System.out.printf("ID: %d; ", sons.getId());
+                }
+                System.out.println();
+                System.out.println();
+            }
+
             scanner.close();
         } catch (
 
