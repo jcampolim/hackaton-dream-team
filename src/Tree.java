@@ -3,11 +3,11 @@ import java.util.ArrayList;
 public class Tree {
     Node root;
 
-    public Tree() { root = null; }
-
     public Tree(Node root) {
         this.root = root;
     }
+
+    public Tree() { this(null); }
 
     public Node getRoot() { return root; }
 
@@ -17,14 +17,14 @@ public class Tree {
 
     public boolean insert(Node node) {
         if(isEmpty()) {
-            root = node;
+            this.root = node;
             return true;
         } else {
             return insert(root, node);
         }
     }
 
-    public boolean insert(Node root, Node node) {
+    private boolean insert(Node root, Node node) {
         if(root.getDestino() != null && root.getDestino().equalsIgnoreCase(node.getOrigem())) {
             root.addDestino(node);
             return true;
@@ -33,15 +33,18 @@ public class Tree {
             return true;
         } else {
             ArrayList<Node> destinos = root.getPastaDestino();
-            for(int i = 0; i < destinos.size(); i++) {
-                return insert(destinos.get(i), node);
+            ArrayList<Node> backups = root.getPastaBackup();
+            for(Node destino : destinos){
+                insert(destino, node);
             }
 
-            ArrayList<Node> backups = root.getPastaBackup();
-            for(int i = 0; i < backups.size(); i++) {
-                return insert(backups.get(i), node);
+            for(Node backup : backups){
+                insert(backup, node);
             }
+
+            return true;
         }
-        return false;
+
+//        return false;
     }
 }

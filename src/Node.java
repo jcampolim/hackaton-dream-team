@@ -1,40 +1,51 @@
 import java.util.ArrayList;
 
 public class Node {
+    private int id;
     private String nome;
     private String origem;
     private String destino;
     private String backup;
 
+    private ArrayList<Node> pastaOrigem;
     private ArrayList<Node> pastaDestino;
     private ArrayList<Node> pastaBackup;
 
-    public Node(String nome, String origem, String destino, String backup) {
+    public Node(int ID, String nome, String origem, String destino, String backup) {
+        this.id = ID;
         this.nome = nome;
         this.origem = origem;
         this.destino = destino;
         this.backup = backup;
-
-        pastaDestino = new ArrayList<>();
-        pastaBackup = new ArrayList<>();
+        this.pastaDestino = new ArrayList<>();
+        this.pastaBackup = new ArrayList<>();
+        this.pastaOrigem = new ArrayList<>();
     }
 
-    public Node() { this(null, null, null, null); }
+    public Node() { this(-1, null, null, null, null); }
+
+    public int getId(){
+        return this.id;
+    }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public String getOrigem() {
-        return origem;
+        return this.origem;
     }
 
     public String getDestino() {
-        return destino;
+        return this.destino;
     }
 
     public String getBackup() {
-        return backup;
+        return this.backup;
+    }
+
+    public void setId(int newID){
+        this.id = newID;
     }
 
     public void setNome(String nome) {
@@ -53,12 +64,20 @@ public class Node {
         this.backup = backup;
     }
 
+    public void addOrigem(Node node){
+        this.pastaOrigem.add(node);
+    }
+
     public void addDestino(Node node) {
-        pastaDestino.add(node);
+        this.pastaDestino.add(node);
     }
 
     public void addBackup(Node node) {
-        pastaBackup.add(node);
+        this.pastaBackup.add(node);
+    }
+
+    public ArrayList<Node> getPastaOrigem(){
+        return pastaOrigem;
     }
 
     public ArrayList<Node> getPastaDestino() {
@@ -73,7 +92,8 @@ public class Node {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Nome: " + nome + "\n")
+        sb.append("ID: " + id + "\n")
+                .append("Nome: " + nome + "\n")
                 .append("Origem: " + origem + "\n")
                 .append("Destino: " + destino + "\n")
                 .append("Backup: " + backup + "\n");
