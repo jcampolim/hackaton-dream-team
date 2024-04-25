@@ -1,15 +1,32 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import guru.nidi.graphviz.attribute.*;
+import guru.nidi.graphviz.model.*;
+import guru.nidi.graphviz.engine.*;
+import static guru.nidi.graphviz.model.Factory.*;
+
 public class Main {
     public static void main(String[] args) {
         ArrayList<Tree> tree = new ArrayList<>();
         tree.add(new Tree());
-        readFile(tree, "./../baseparateste.csv");
+        readFile(tree, "baseparateste.csv");
+
+        MutableGraph g = mutGraph("example1").setDirected(true).add(
+                mutNode("a").add(Color.RED).addLink(mutNode("b")));
+
+        try {
+            Graphviz.fromGraph(g).width(200).render(Format.PNG).toFile(new File("example/ex1m.png"));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     public static void readFile(ArrayList<Tree> tree, String filePath) {
@@ -52,7 +69,6 @@ public class Main {
                     ArrayList<Node> newList = new ArrayList<>();
                     mapBackup.put(tokens[4], newList);
                 }
-
             }
 
             for (Node currNode : auxList) {
@@ -100,56 +116,10 @@ public class Main {
                 System.out.println();
                 System.out.println();
             }
-
             scanner.close();
         } catch (
-
-        FileNotFoundException e) {
+                FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
-
-        // Reading all data and creating the tree from it
-        /*
-         * while (scanner.hasNextLine()) {
-         * line = scanner.nextLine().strip().replace(" ", "");
-         * String[] tokens = line.split(";");
-         * 
-         * Node node = Node(tokens[0], tokens[1], tokens[2], tokens[3]);
-         * 
-         * for(Node aux : mapBackup.get(tokens[1])){
-         * 
-         * }
-         * 
-         * 
-         * boolean isInserted = false;
-         * for(int i = 0; i < tree.size(); i++) {
-         * isInserted = tree.get(i).insert(node);
-         * if(isInserted) break;
-         * }
-         * 
-         * if(!isInserted) {
-         * tree.add(new Tree(node));
-         * }
-         * }
-         * }
-         * 
-         * private static Node getNode(String line) {
-         * Node node = new Node();
-         * 
-         * // If a field is empty, then the attribute receives null
-         * if (!tokens[1].isEmpty()) node.setNome(tokens[1]);
-         * else node.setNome(null);
-         * 
-         * if (!tokens[2].isEmpty()) node.setOrigem(tokens[2]);
-         * else node.setOrigem(null);
-         * 
-         * if (!tokens[3].isEmpty()) node.setDestino(tokens[3]);
-         * else node.setDestino(null);
-         * 
-         * if (!tokens[4].isEmpty()) node.setBackup(tokens[4]);
-         * else node.setBackup(null);
-         * 
-         * return node;
-         */
     }
 }
