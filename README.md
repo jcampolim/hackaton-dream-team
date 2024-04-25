@@ -43,7 +43,7 @@ Representa a criação de uma árvore. Contém o atributo 'root' do tipo 'Node',
 ### main
 Inicia a execução do programa, cria uma lista de árvores e adiciona uma nova árvore à essa lista. Depois, chama o método 'readFile' que recebe a lista de árvores e o arquivo csv como parâmetros.
 
-![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/e54552fb-6d70-4bae-8fd2-0920872f0485)
+![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/5ed2d29e-a73b-42e1-89a7-264b67c99556)
 
 ### readFile
 É o método responsável por ler o arquivo CSV pelo caminho 'filePath' e processar os seus dados
@@ -51,28 +51,28 @@ Inicia a execução do programa, cria uma lista de árvores e adiciona uma nova 
 #### Processamento do CSV
 O arquivo CSV é lido através de um 'FileReader', um 'Scanner' percorre cada conteúdo do arquivo, dois mapas são criados para armazenar os nós de backup e destino, uma lista auxiliar 'auxList' é criada para armazenar temporariamente os nós lidos do arquivo, a variável 'initialNode' é inicializada como nula e o cabeçalho do arquivo é ignorado.
 
-![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/cd607d2e-533e-408f-898d-d5ba3f44b221)
+![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/33f79228-4cff-40e9-a661-3c52d412ebde)
 
 #### Processamento das linhas
 Loop para processar cada linha do arquivo. Cada linha é lida, processada e os dados são armazenados em objetos Node.
 Os nós são adicionados às listas de backup e destino correspondentes nos mapas.
 
-![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/92947d5c-7654-4a1d-9815-29670be37b28)
+![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/2752e5ab-d3f6-41d8-9d50-73bc32a2970e)
 
 #### Conexão entre os nós
 Percorre os nós na lista auxiliar e conecta os nós de backup e destino aos seus respectivos nós pais, conforme especificado nos mapas.
 
-![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/8e429a77-e46e-4a3e-a828-ebb36afc7f21)
+![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/90a1a39c-cb9f-4853-89a5-a56b0372fe71)
 
 #### Impressão dos nós
 Para testar se o grafo estava criando as conexões corretamente, este bloco imprime os detalhes de cada nó, incluindo seu ID, nome e nós de origem, destino e backup associados.
 
-![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/040be8c2-88f4-4ed7-b88e-55fecf241cf9)
+![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/86a342e0-8fc3-4f73-b2b9-d5407f08683d)
 
 #### Mensagem de erro
 Se o arquivo não for encontrado, apresenta uma mensagem de erro representando a exceção 'FileNotFoundException'.
 
-![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/bb9867c5-60ea-416e-96fa-4f155242c565)
+![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/333d6d1d-a2d9-48c9-93c4-212729a9a282)
 
 ## Explicando o código (Class Tree) -- (deixando só para garantir, mas acho que n vms precisar mais dela)
 
