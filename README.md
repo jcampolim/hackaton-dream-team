@@ -117,7 +117,7 @@ Então, chegamos aos métodos para obter as listas de conexões.
 
 ![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/e044e1ad-cc95-4a17-8c2d-cd0198f178f0)
 
-## Método toString
+### Método toString
 Sobrescreve o método toString para trazer uma representação em forma de String do objeto Node.
 
 ![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/653ecccd-c305-43dd-a994-06a67df9b53c)
