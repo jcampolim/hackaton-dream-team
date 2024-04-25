@@ -1,4 +1,9 @@
-# Desafio Hackathon 2024 Makenzie
+# Desafio Hackathon 2024 - Mackenzie
+
+# Equipe
+Nome: dream team include <br>
+Código: HIPER-155
+
 ## História
 Eu enquanto Colaborador H Hiperstream, necessito de um sistema que com base no modelo de dados sugerido seja capaz de devolver um desenho de diagrama que mostre o Fluxo da informação com base em duas pastas diferentes. 
 O Diagrama não precisa necessariamente seguir o do exemplo, 
@@ -30,6 +35,8 @@ Para resolver o desafio, o grupo desenvolveu um programa em Java que lê um arqu
 Representa a classe principal do projeto. É onde ocorre a leitura do arquivo CSV e a criação do grafo a partir da base de dados disponibilizada no arquivo lido.
 ### Node
 Representa um nó da estrutura do grafo. Contém os atributos ID, nome, origem, destino e backup, juntamente com métodos para adicionar conexões a outros nós.
+### Tree
+Representa a criação de uma árvore. Contém o atributo 'root' do tipo 'Node', os construtores da classe e os métodos para inserção de um nó na árvore. 
 
 ## Explicando o código (Class Main)
 
@@ -58,15 +65,59 @@ Percorre os nós na lista auxiliar e conecta os nós de backup e destino aos seu
 ![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/8e429a77-e46e-4a3e-a828-ebb36afc7f21)
 
 #### Impressão dos nós
-Após conectar os nós, imprime os detalhes de cada nó, incluindo seu ID, nome e nós de origem, destino e backup associados.
+Para testar se o grafo estava criando as conexões corretamente, este bloco imprime os detalhes de cada nó, incluindo seu ID, nome e nós de origem, destino e backup associados.
 
 ![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/040be8c2-88f4-4ed7-b88e-55fecf241cf9)
-
 
 #### Mensagem de erro
 Se o arquivo não for encontrado, apresenta uma mensagem de erro representando a exceção 'FileNotFoundException'.
 
 ![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/bb9867c5-60ea-416e-96fa-4f155242c565)
 
+## Explicando o código (Class Tree) -- (deixando só para garantir, mas acho que n vms precisar mais dela)
 
+### Primeiros passos
+No trecho abaixo, temos a declaração do atributo root de tipo Node. Depois, ocorre a criação de dois construtores da classe, um recebe o root como parâmetro e retorna esse root e o outro não recebe nada e retorna NULL. Em seguida, temos a criação do método GET (para consulta) e do método SET (para alterar) para o atributo root. Por fim, temos o método 'isEmpty' que serve para retornar 'root ==  null' caso a árvore esteja vazia.
 
+![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/aff5fc38-ae54-4b45-93a1-e184de3c79c1)
+
+### insert(Node node)
+Verifica se a árvore está vazia. Se estiver, define o nó inserido como raiz. Se não estiver, chama o método 'insert(Node root, Node node)' para iniciar a inserção a partir da raiz.
+
+![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/a9953d97-79d0-4543-a3c0-1650e80c6825)
+
+### insert(Node root, Node node)
+Tenta inserir o novo nó de duas formas: Se o destino do nó raiz for igual à origem do novo nó, então o novo nó é adicionado como um destino. Se o backup do nó raiz for igual à origem do novo nó o novo nó é adicionado como um backup. Se não, o percorre recursivamente as pastas de destino e de backup da raiz e chama-se novamente para cada nó filho, até encontrar uma conexão ou percorrer toda a árvore.
+
+## Explicando o código (Class Node)
+
+### Atributos da classe
+No trecho abaixo, são declarados os métodos id (tipo int), nome (tipo String), origem (tipo String), destino (tipo String) e backup (tipo String) que representam as características do nó. Também criamos três listas de Node para representar as conexões entre os nós: pastaOrigem, pastaDestino e pastaBackup.
+
+![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/24e307d9-b694-40e4-8bc1-60609ae0d755)
+
+### Construtores da classe
+Temos dois construtores: um com parâmetros e um padrão. O construtor com parâmetros recebe os atributos ID, nome, origem, destino e backup e retorna esses atributos e as listas pastaDestino, pastaBackup e pastaOrigem. Já o construtor sem parâmetros (padrão) chama o construtor com parâmetros com valores padrão.
+
+![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/3b3e49e7-3ba7-4550-b0e0-602e9f166253)
+
+### Getters e Setters
+Em seguida, temos os métodos GET e SET de todos os atributos da classe. Eles servem, respectivamente, para consultar e atualizar os atributos declarados.
+
+![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/fc76e34a-fa76-4589-90a9-ff3f2e0e32c3)
+![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/52297651-253e-455e-a019-09069f1a9839)
+
+### Adicionando conexões
+Depois, são criados os métodos para adicionar nós às listas de conexões.
+
+![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/8132ebff-51b3-4d0f-b59c-0533b207c09d)
+
+### Obtendo as listas de conexões
+Então, chegamos aos métodos para obter as listas de conexões.
+
+![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/e044e1ad-cc95-4a17-8c2d-cd0198f178f0)
+
+## Método toString
+Sobrescreve o método toString para trazer uma representação em forma de String do objeto Node.
+
+![image](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/653ecccd-c305-43dd-a994-06a67df9b53c)
