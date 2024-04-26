@@ -291,6 +291,10 @@ executado com sucesso
 ```
 
 ### Imagem .png como diagrama
+Legenda para o diagrama: 
+
+1 - As arestas em roxo do grafo representam os relacionamentos para pastas de backup. <br>
+2 - As arestas em laranja representam os relacionamentos para pastas de destino.
 
 ![IMG-20240425-WA0043](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/b2ec50ca-e0e5-4dda-a760-a833f5319771)
 
