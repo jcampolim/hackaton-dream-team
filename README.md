@@ -3,11 +3,12 @@
 # Equipe
 
 Nome: Dream Team Include
+
 Código: HIPER-155
 
 ## Tópicos
 
-- [Historia](#história)
+- [História](#história)
     - [Modelo de Dados](#modelo-de-dados)
     - [Exemplo de Dados](#exemplo-de-dados)
 - [Como Executar o Programa](#como-executar-o-programa)
