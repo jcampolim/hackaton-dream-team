@@ -6,6 +6,7 @@ public class Node {
     private String origem;
     private String destino;
     private String backup;
+    private boolean visited;
 
     private ArrayList<Node> pastaOrigem;
     private ArrayList<Node> pastaDestino;
@@ -17,6 +18,7 @@ public class Node {
         this.origem = origem;
         this.destino = destino;
         this.backup = backup;
+        this.visited = false;
         this.pastaDestino = new ArrayList<>();
         this.pastaBackup = new ArrayList<>();
         this.pastaOrigem = new ArrayList<>();
@@ -24,7 +26,7 @@ public class Node {
 
     public Node() { this(-1, null, null, null, null); }
 
-    public int getId(){
+    public int getId() {
         return this.id;
     }
 
@@ -44,7 +46,11 @@ public class Node {
         return this.backup;
     }
 
-    public void setId(int newID){
+    public boolean getVisited() {
+        return this.visited;
+    }
+
+    public void setId(int newID) {
         this.id = newID;
     }
 
@@ -64,7 +70,11 @@ public class Node {
         this.backup = backup;
     }
 
-    public void addOrigem(Node node){
+    public void visit() {
+        this.visited = true;
+    }
+
+    public void addOrigem(Node node) {
         this.pastaOrigem.add(node);
     }
 
@@ -76,7 +86,7 @@ public class Node {
         this.pastaBackup.add(node);
     }
 
-    public ArrayList<Node> getPastaOrigem(){
+    public ArrayList<Node> getPastaOrigem() {
         return pastaOrigem;
     }
 
@@ -89,14 +99,13 @@ public class Node {
     }
 
     @Override
-
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("ID: " + id + "\n")
-                .append("Nome: " + nome + "\n")
-                .append("Origem: " + origem + "\n")
-                .append("Destino: " + destino + "\n")
-                .append("Backup: " + backup + "\n");
+          .append("Nome: " + nome + "\n")
+          .append("Origem: " + origem + "\n")
+          .append("Destino: " + destino + "\n")
+          .append("Backup: " + backup + "\n");
         return sb.toString();
     }
 }

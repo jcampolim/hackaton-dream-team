@@ -1,35 +1,16 @@
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import guru.nidi.graphviz.attribute.*;
-import guru.nidi.graphviz.model.*;
-import guru.nidi.graphviz.engine.*;
-import static guru.nidi.graphviz.model.Factory.*;
-
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Tree> tree = new ArrayList<>();
-        tree.add(new Tree());
-        readFile(tree, "baseparateste.csv");
-
-        MutableGraph g = mutGraph("example1").setDirected(true).add(
-                mutNode("a").add(Color.RED).addLink(mutNode("b")));
-
-        try {
-            Graphviz.fromGraph(g).width(200).render(Format.PNG).toFile(new File("example/ex1m.png"));
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
+        readFile("./../baseparateste.csv");
     }
 
-    public static void readFile(ArrayList<Tree> tree, String filePath) {
+    public static void readFile(String filePath) {
         // Try reading the file path
         try {
             FileReader fileReader = new FileReader(filePath);
@@ -46,28 +27,30 @@ public class Main {
             }
 
             while (scanner.hasNextLine()) {
-                line = scanner.nextLine().strip().replace(" ", "");
+                line = scanner.nextLine().strip().toUpperCase().replace(";;", "; ;").concat(" ");
+                System.out.println(line);
                 String[] tokens = line.split(";");
-
+                
                 Node currNode = new Node(Integer.parseInt(tokens[0]), tokens[1], tokens[2], tokens[3], tokens[4]);
 
                 auxList.add(currNode);
 
                 if (mapDestiny.containsKey(tokens[3])) {
-                    // System.out.println("entrei");
                     ArrayList<Node> list = mapDestiny.get(tokens[3]);
                     list.add(currNode);
                 } else {
                     ArrayList<Node> newList = new ArrayList<>();
+                    newList.add(currNode);
                     mapDestiny.put(tokens[3], newList);
                 }
 
-                if (mapBackup.containsKey(tokens[4])) {
-                    ArrayList<Node> list = mapBackup.get(tokens[4]);
+                if (mapBackup.containsKey(tokens[4].strip())) {
+                    ArrayList<Node> list = mapBackup.get(tokens[4].strip());
                     list.add(currNode);
                 } else {
                     ArrayList<Node> newList = new ArrayList<>();
-                    mapBackup.put(tokens[4], newList);
+                    newList.add(currNode);
+                    mapBackup.put(tokens[4].strip(), newList);
                 }
             }
 
@@ -77,18 +60,13 @@ public class Main {
 
                 if (mapBackup.get(currNode.getOrigem()) != null) {
                     for (Node parentNode : mapBackup.get(currNode.getOrigem())) {
-                        // System.out.printf("Conectando ID %d a ID %d (Backup)\n", parentNode.getId(),
-                        // currNode.getId());
                         parentNode.addBackup(currNode);
                         currNode.addOrigem(parentNode);
                     }
                 }
 
                 if (mapDestiny.get(currNode.getOrigem()) != null) {
-                    System.out.println("entrei");
                     for (Node parentNode : mapDestiny.get(currNode.getOrigem())) {
-                        // System.out.printf("Conectando ID %d a ID %d (Destino)\n", parentNode.getId(),
-                        // currNode.getId());
                         parentNode.addDestino(currNode);
                         currNode.addOrigem(parentNode);
                     }
@@ -116,9 +94,22 @@ public class Main {
                 System.out.println();
                 System.out.println();
             }
+
             scanner.close();
-        } catch (
-                FileNotFoundException e) {
+
+            GraphPrinter gp = new GraphPrinter("AdjGraph");
+
+            gp.addln("concentrate=true");
+            gp.addln("edge[arrowhead=normal]");
+            gp.addln("node[shape=box]");
+
+            for(Node aux : auxList){
+                if(!aux.getVisited()) Graph.dfsprintGraphNode(aux, gp);
+            }
+
+            gp.print();
+
+        } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
     }
