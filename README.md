@@ -91,7 +91,7 @@ O Diagrama não precisa necessariamente seguir o do exemplo [Modelo de Dados](#m
         - No prompt de comando, digitar: `dot -V`.
 
 - Linux
-    - Para a 1ª vez, é necessário tornar o shell script executável, do seguinte modo: `chmod + x make.sh`
+    - Para a 1ª vez, é necessário tornar o shell script executável, do seguinte modo: `chmod +x make.sh`
     - Após isto, para cada vez que precisar executar o programa, basta utilizar, no terminal, clicando duas vezes sobre o arquivo ou utilizando o comando: `./make.sh`
 
 
