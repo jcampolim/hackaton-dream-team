@@ -78,9 +78,11 @@ O Diagrama não precisa necessariamente seguir o do exemplo [Modelo de Dados](#m
 
 ## Modo de Execução para Diferentes Sistemas Operacionais 
 
+Indenpendentemente do sistema operacional, é necessário estar no diretório em que os executáveis se encontram para o programa funcionar.
+
 - Windows
     - Para a 1ª vez: instale o Graphviz seguindo o tutorial abaixo.
-    - Após isto, para cada vez que precisar executar o programa, basta executar o arquivo clicando duas vezes sobre ele ou utilizando o comando: `.\make.bat`.
+    - Após isto, para cada vez que precisar executar o programa, basta executar o arquivo clicando duas vezes sobre ele ou utilizando o comando no terminal: `.\make.bat`.
 
 - Instalando o Graphviz em sistemas Windows
     - Download em https://graphviz.org/download/
@@ -97,7 +99,7 @@ O Diagrama não precisa necessariamente seguir o do exemplo [Modelo de Dados](#m
 
 # Solução Desenvolvida
 
-Para resolver o desafio, o grupo desenvolveu um programa em Java que lê um arquivo CSV e transforma cada linha da base de dados em um nó. Cada nó possui seus atributos como ID, nome, pasta origem, pasta destino e pasta backup e, a partir disso, um grafo é criado, tendo as conexões entre os nós geradas pelos relacionamentos entre as pastas de origem e de backup. Por fim, usamos a biblioteca graphviz para gerar uma representação visual do grafo criado, evidenciando a organização dos dados. 
+Para resolver o desafio, o grupo desenvolveu um programa em Java que lê um arquivo CSV e transforma cada linha da base de dados em um nó de um grafo. Cada nó possui seus atributos como ID, nome, pasta origem, pasta destino e pasta backup e, a partir disso, um grafo é criado, tendo as conexões entre os nós geradas pelos relacionamentos entre as pastas de origem, de destino e de backup. Por fim, usamos a biblioteca graphviz para gerar uma representação visual do grafo criado, exibindo os IDs das atividades e evidenciando a organização dos dados.
 
 A depender do sistema operacional, a execução do programa pode ser feita por meio do arquivo `make.bat` (windows) ou `make.sh` (Linux). Após a execução, são gerados os arquivos `AdjGraph.png`, `AdjGraph.dot` e `saida.txt`, indicando, respectivamente, a imagem com o diagrama elaborado, o arquivo `.dot` referente à codificação realizada para gerar a representação por meio do graphviz e uma saída textual, evidenciando os dados de cada aplicação, bem como suas conexões.
 
