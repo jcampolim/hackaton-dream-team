@@ -2,8 +2,7 @@
 
 # Equipe
 
-Nome: Dream Team Include
-
+Nome: Dream Team Include <br>
 Código: HIPER-155
 
 ## Tópicos
@@ -293,7 +292,7 @@ executado com sucesso
 
 ### Imagem .png como diagrama
 
-![Diagrama gerado](../../assets/image.png)
+![IMG-20240425-WA0043](https://github.com/jcampolim/hackaton-dream-team/assets/93957694/b2ec50ca-e0e5-4dda-a760-a833f5319771)
 
 # Explicando o código
 
